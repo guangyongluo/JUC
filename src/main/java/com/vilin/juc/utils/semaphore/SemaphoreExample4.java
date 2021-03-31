@@ -1,4 +1,4 @@
-package com.vilin.juc.utils.Semaphore;
+package com.vilin.juc.utils.semaphore;
 
 import java.util.Collection;
 import java.util.concurrent.Semaphore;

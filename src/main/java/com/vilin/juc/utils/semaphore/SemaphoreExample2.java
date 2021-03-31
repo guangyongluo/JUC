@@ -1,4 +1,4 @@
-package com.vilin.juc.utils.Semaphore;
+package com.vilin.juc.utils.semaphore;
 
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
