@@ -9,6 +9,24 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.StampedLock;
 import java.util.stream.Collectors;
 
+
+/**
+ * ReentrantLock VS Synchronized
+ * ReentrantLock:更加灵活
+ *
+ * ReentrantReadWriteLock
+ *
+ * R W X
+ * W W X
+ * W R X
+ * R R O
+ *
+ * 100 threads
+ *
+ * 99 threads need read lock
+ * 1 threads need write lock
+ *
+ */
 public class StampedLockExample {
 
     private final static StampedLock lock = new StampedLock();

@@ -12,7 +12,7 @@ public class SyncInvoker {
 //        System.out.println(result);
 
         FutureService futureService = new FutureService();
-        Future<String> future = futureService.submit(() -> {
+        Future future = futureService.submit(() -> {
             try {
                 Thread.sleep(10000L);
             } catch (InterruptedException e) {
@@ -30,7 +30,7 @@ public class SyncInvoker {
         }
         System.out.println("====================");
 //        try {
-//            System.out.println(future.get());
+//            System.out.println(Future.get());
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }

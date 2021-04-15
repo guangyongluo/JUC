@@ -8,24 +8,10 @@ import static java.util.stream.Collectors.toList;
 
 public class CompletableFutureExample1 {
 
+
     public static void main(String[] args) throws InterruptedException {
-//        ExecutorService executorService = Executors.newFixedThreadPool(10);
 
-//        Future<?> future = executorService.submit(() -> {
-//            try {
-//                TimeUnit.SECONDS.sleep(10);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        });
-//
-//        while (!future.isDone()){
-//
-//        }
-//
-//        System.out.println("Done");
-
-//        CompletableFuture.runAsync(() -> {
+//        CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
 //            try {
 //                TimeUnit.SECONDS.sleep(10);
 //            } catch (InterruptedException e) {
@@ -33,18 +19,16 @@ public class CompletableFutureExample1 {
 //            }
 //        }).whenComplete((v, t) -> System.out.println("DONE"));
 //
-//        System.out.println("======I am not block======");
+//        System.out.println("=========I am not blocked=========");
 //
-//        try {
-//            Thread.currentThread().join();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
+//        Thread.currentThread().join();
 
+//        ExecutorService executorService = Executors.newFixedThreadPool(10);
+//
 //        List<Callable<Integer>> tasks = IntStream.range(0, 10).boxed()
 //                .map(i -> (Callable<Integer>) () -> get()).collect(toList());
 //
-//        executorService.invokeAll(tasks).stream().map(future -> {
+//        executorService.invokeAll(tasks).stream().map(future ->{
 //            try {
 //                return future.get();
 //            } catch (Exception e) {
@@ -55,10 +39,9 @@ public class CompletableFutureExample1 {
         IntStream.range(0, 10).boxed()
                 .forEach(i -> CompletableFuture.supplyAsync(CompletableFutureExample1::get)
                 .thenAccept(CompletableFutureExample1::display)
-                .whenComplete((v, t) -> System.out.println(i + " DONE")));
+                .whenComplete((v, t) -> System.out.println(i + "DONE")));
 
         Thread.currentThread().join();
-
     }
 
     private static void display(int data){
@@ -69,11 +52,10 @@ public class CompletableFutureExample1 {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        System.out.println(Thread.currentThread().getName() + " display execute done " + value);
+        System.out.println(Thread.currentThread().getName() + " display execute done " + data);
     }
 
-    private static int get() {
+    private static int get(){
         int value = ThreadLocalRandom.current().nextInt(20);
         try {
             System.out.println(Thread.currentThread().getName() + " will be sleep " + value);
